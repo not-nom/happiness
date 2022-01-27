@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <button class="btn">+</button>
+    <input type="text" name="" id="wish" placeholder="Wish to us" >
+    <input type="text" name="" id="name" placeholder="Your name" >
+    <input type="text" name="" id="surname" placeholder="Your surname" >
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
+        import { getDatabase, set, ref ,push, child, onValue, remove} from
+        "https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyAds1amCeMpKIDwk43VibdQWbypXq8469s",
+            authDomain: "todo-list-project-bde4b.firebaseapp.com",
+            projectId: "todo-list-project-bde4b",
+            storageBucket: "todo-list-project-bde4b.appspot.com",
+            messagingSenderId: "266564815133",
+            appId: "1:266564815133:web:9b00c16eca457e09c8f9f4",
+            databaseURL: "https://test1-bde4b-default-rtdb.europe-west1.firebasedatabase.app/"
+        };
+        const app = initializeApp(firebaseConfig);
+            const database = getDatabase(app);
+            const todoId = push(child(ref(database), 'wantIt/')).key;
+            let button = $('.btn');
+            let complete;
+            button.click(function() {
+                set(ref(database, "Undone/" + ($('#name').val()+" "+$('#surname').val())), {
+                naSu: $('#name').val()+" "+$('#surname').val(),
+                wish_from_user: $('#wish').val(),
+            });
+            });
+            </script>
+</body>
+</html>
